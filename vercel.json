@@ -13,5 +13,11 @@
         "src": "/(.*)",
         "dest": "/"
       }
-    ]
+    ],
+    "functions": {
+        "api/*": {
+          "runtime": "@vercel/node",
+          "timeout": 30
+        }
+      }
   }

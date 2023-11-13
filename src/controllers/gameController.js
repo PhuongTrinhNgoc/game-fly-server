@@ -15,10 +15,10 @@ const gameController = {
             res.status(500).json(err)
         }
     },
-    
+
     getGame : async(req,res)=>{
         try {
-                const games =  await Game.find();
+                const games =  await Game.find().populate("publisher");
                 res.status(200).json(games)
             } catch (err) {
             res.status(500).json(err)
