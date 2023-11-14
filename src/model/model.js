@@ -33,7 +33,8 @@ const mongoose = require('mongoose');
     publisher:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Author"
-    }
+    },
+    status:{type:Boolean}
  })
  let Game = mongoose.model('Game',gameSchema)
  let Author = mongoose.model('Author',publisherSchema)

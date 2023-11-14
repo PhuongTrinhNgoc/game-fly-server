@@ -2,12 +2,12 @@
   "name": "game-nodejs",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "index.js",
   "engines": {
     "node":"16.x"
   },
   "scripts": {
-    "start": "nodemon --inspect src/index.js"
+    "start": "nodemon --inspect index.js"
   },
   "author": "",
   "license": "ISC",

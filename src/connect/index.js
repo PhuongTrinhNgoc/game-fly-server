@@ -7,6 +7,7 @@ async function conect(){
     await mongoose.connect(process.env.MONGODB_URL);
         console.log('succsess');
     } catch (error) {
+        console.log(error);
         console.log('succsess err');
         
     }
