@@ -12,8 +12,8 @@ dotenv.config();
 //conect DB
 db.conect()
 
-app.use(bodyParser.json({limit:"50mb"}))
 app.use(cors())
+app.use(bodyParser.json({limit:"50mb"}))
 app.use(morgan("common"))
 
 app.use('/v1/author',authorRoute)
