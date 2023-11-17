@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-  
+const mongoosePaginate = require('mongoose-paginate-v2');
 
  const publisherSchema = new mongoose.Schema({
     name:{
@@ -18,7 +18,6 @@ const mongoose = require('mongoose');
         
     ]
  })
-
  const gameSchema = new mongoose.Schema({
     name:{
         type:String,
@@ -36,6 +35,8 @@ const mongoose = require('mongoose');
     },
     status:{type:Boolean}
  })
+ gameSchema.plugin(mongoosePaginate);
+
  let Game = mongoose.model('Game',gameSchema)
  let Author = mongoose.model('Author',publisherSchema)
  module.exports = {Game,Author}

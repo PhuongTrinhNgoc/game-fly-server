@@ -24,9 +24,34 @@ const gameController = {
     },
 
     getGame: async (req, res) => {
+        console.log(req);
         try {
-            const games = await Game.find().populate("publisher");
-            res.status(200).json(games);
+            let { page = 1, limit = 10, sortBy, sortOrder, name } = req.query;
+
+            // Convert query parameters to integers
+            page = parseInt(page);
+            limit = parseInt(limit);
+
+            // Define options for pagination and sorting
+            const options = {
+                page,
+                limit,
+                populate: "publisher", // Assuming you have a reference to the 'publisher' field
+                sort: { [sortBy]: sortOrder === 'desc' ? -1 : 1 },
+            };
+
+            // Define a query for filtering
+            const query = name ? { name: new RegExp(name, 'i') } : {};
+
+            // Perform pagination, sorting, and filtering with Mongoose paginate
+            const result = await Game.paginate(query, options);
+
+            res.status(200).json({
+                totalItems: result.totalDocs,
+                currentPage: result.page,
+                totalPages: result.totalPages,
+                data: result.docs,
+            });
         } catch (err) {
             console.error(err);
             res.status(500).json({ error: "Internal Server Error" });
